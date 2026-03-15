@@ -21,4 +21,4 @@
 ![GitHub](./screen_shots/git_cli.png)
 
 ## Stage, commit, push in VSCode:
-![VSCode](./screen_shots/vscode_git.png)
+![VSCode](./screen_shots/stage_git.png)
