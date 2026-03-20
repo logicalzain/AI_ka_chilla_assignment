@@ -1,0 +1,32 @@
+# ============================================================
+# JEEVES Desktop Assistant - Required Dependencies
+# ============================================================
+# Python Version: 3.11
+# Install all dependencies with:  pip install -r requirements.txt
+# ============================================================
+
+# --- Voice ---
+pyttsx3==2.98                # Offline text-to-speech engine
+SpeechRecognition==3.11.0    # Voice / microphone input
+PyAudio==0.2.14              # Audio stream for SpeechRecognition
+
+# --- GUI ---
+customtkinter==5.2.1         # Modern themed Tkinter widgets
+Pillow==10.4.0               # Image handling for GUI icons
+
+# --- System Control ---
+psutil==6.1.0                # Battery, CPU, RAM, disk info
+pyautogui==0.9.54            # Screenshots, mouse & keyboard automation
+pyperclip==1.9.0             # Clipboard operations
+
+# --- Windows Specific ---
+winshell==0.6                # Recycle bin, shortcuts, special folders
+pywin32==308                 # Windows COM automation & system APIs
+comtypes==1.4.8              # Brightness control via WMI
+
+# --- Arduino / ESP32 ---
+pyserial==3.5                # Serial (USB / Bluetooth) communication
+requests==2.32.3             # HTTP requests for ESP32 WiFi control
+
+# --- AI / Internet ---
+google-generativeai==0.8.3   # Google Gemini API

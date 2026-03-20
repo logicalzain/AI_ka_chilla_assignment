@@ -1,0 +1,20 @@
+{
+    "assistant_name": "Jeeves",
+    "user_name": "Boss",
+    "gemini_api_key": "",
+    "voice_rate": 180,
+    "voice_volume": 1.0,
+    "voice_index": 0,
+    "arduino_port": "COM3",
+    "arduino_baud_rate": 9600,
+    "esp32_ip": "192.168.1.100",
+    "esp32_port": 80,
+    "browser_path": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "search_directories": [
+        "C:/Users",
+        "D:/",
+        "E:/"
+    ],
+    "screenshot_save_path": "",
+    "greeting_enabled": true
+}

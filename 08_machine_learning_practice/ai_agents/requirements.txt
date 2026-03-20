@@ -1,0 +1,47 @@
+# ============================================================
+# Social Media AI Agents - Shared Requirements
+# ============================================================
+# Run: pip install -r requirements.txt
+
+# --- Core Automation ---
+selenium==4.18.1
+undetected-chromedriver==3.5.5
+webdriver-manager==4.0.1
+
+# --- Instagram ---
+instagrapi==2.1.2
+instaloader==4.10.3
+
+# --- TikTok ---
+TikTokApi==6.4.0
+playwright==1.42.0
+
+# --- WhatsApp ---
+pywhatkit==5.4
+pyautogui==0.9.54
+
+# --- LinkedIn ---
+linkedin-api==2.1.1
+
+# --- General Utilities ---
+requests==2.31.0
+python-dotenv==1.0.1
+fake-useragent==1.5.1
+Pillow==10.2.0
+moviepy==1.0.3
+opencv-python==4.9.0.80
+
+# --- Human-like Behavior ---
+pyperclip==1.8.2
+keyboard==0.13.5
+mouse==0.7.1
+
+# --- Data & Scheduling ---
+pandas==2.2.1
+schedule==1.2.1
+tqdm==4.66.2
+colorama==0.4.6
+
+# --- Notebook Utilities ---
+ipywidgets==8.1.2
+ipython==8.22.2
