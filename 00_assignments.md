@@ -47,11 +47,11 @@
 ![Ollama](./screen_shots/ollama.png)
 
 # 10. **Machine Learning practice**
-[Machine_Learning_Practice]().
+[Machine_Learning_Practice](https://github.com/logicalzain/AI_ka_chilla_assignment/tree/main/08_machine_learning_practice).
 
 # 11. **AI Agent Project**
-[AI_Agent_Project]()
+[AI_Agent_Project](https://github.com/logicalzain/AI_ka_chilla_assignment/tree/main/09_ai_agents_custom_project)
 
 # **Final Project Documentation & Presentation**
-- [Documentation]()
-- [Code]()
+- [Documentation](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/10_final_project/DOCUMENTATION.md)
+- [Code](https://github.com/logicalzain/AI_ka_chilla_assignment/tree/main/10_final_project)

@@ -303,20 +303,17 @@ python main.py
 *[Placeholders - Teacher will add actual screenshots]*
 
 ### Screenshot 1: Main Application Window
-![VOLTO Main Window](images/main_window.png)
-*Description: The VOLTO application showing the main GUI with voice visualizer and chat interface*
+![VOLTO Main Window](images/volto_main.png)
 
 ### Screenshot 2: Voice Visualizer
-![Voice Visualizer](images/visualizer.png)
-*Description: Animated orb indicator showing voice states (idle, listening, speaking)*
+![One time Listening](images/listen_once.png)
+![Continue Listening](images/listen_continue.png)
 
-### Screenshot 3: Command Examples
-![Commands](images/commands.png)
-*Description: Examples of voice commands and their responses*
+### Screenshot 3: API and other settings
+![Commands](images/api_integration.png)
 
 ### Screenshot 4: Game Interface
-![Games](images/games.png)
-*Description: VOLTO playing trivia game with user*
+![Games](images/game.png)
 
 ---
 
