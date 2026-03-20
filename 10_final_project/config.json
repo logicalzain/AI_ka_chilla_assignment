@@ -1,6 +1,6 @@
 {
-    "assistant_name": "Jeeves",
-    "user_name": "Boss",
+    "assistant_name": "volto",
+    "user_name": "Zain",
     "gemini_api_key": "",
     "voice_rate": 180,
     "voice_volume": 1.0,
@@ -16,5 +16,6 @@
         "E:/"
     ],
     "screenshot_save_path": "",
-    "greeting_enabled": true
+    "greeting_enabled": true,
+    "always_listening_enabled": false
 }

@@ -75,7 +75,7 @@ SIDEBAR_BUTTONS = [
     ("─────────", None),
     ("🌐  Chrome", "open chrome"),
     ("📺  YouTube", "open youtube"),
-    ("💬  WhatsApp", "open whatsapp"),
+    ("💬  WhatsApp", "whatsapp_dialog"),  # CHANGED: Special command for dialog
     ("📧  Gmail", "open gmail"),
     ("─────────", None),
     ("🔌  Arduino", "arduino status"),
@@ -96,6 +96,9 @@ class JeevesGUI:
         self.core = AssistantCore(config)
         self.is_listening = False
         self.is_speaking = False
+        self.always_listening = False  # NEW: Background listening mode
+        self.always_listening_thread = None  # NEW: Thread for always-listening
+        self.stop_listening = False  # NEW: Stop signal for background listener
 
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("dark-blue")
@@ -124,7 +127,11 @@ class JeevesGUI:
 
         self.root.bind('<Return>', lambda e: self._on_send())
         self.root.bind('<Control-m>', lambda e: self._on_mic_click())
+        self.root.bind('<Control-l>', lambda e: self._toggle_always_listening())  # NEW: Ctrl+L for always-listening
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
+        
+        # NEW: Start always-listening in background
+        self._start_always_listening()
 
     # ========================================================
     # SPEAK HELPER — used everywhere to ensure TTS works
@@ -277,10 +284,11 @@ class JeevesGUI:
         )
         self.mic_btn.pack(pady=(6, 0))
 
-        ctk.CTkLabel(
-            viz_panel, text="or press Ctrl + M",
-            font=("Segoe UI", 9), text_color=COLORS["text_muted"]
-        ).pack(pady=(6, 0))
+        ctrl_hint = ctk.CTkLabel(
+            viz_panel, text="Ctrl+M: One-time voice | Ctrl+L: Always-listen",
+            font=("Segoe UI", 8), text_color=COLORS["text_muted"]
+        )
+        ctrl_hint.pack(pady=(6, 0))
 
         # Quick info at bottom of viz panel
         info_frame = ctk.CTkFrame(viz_panel, fg_color=COLORS["bg_light"], corner_radius=10)
@@ -476,6 +484,11 @@ class JeevesGUI:
     def _execute_command(self, command: str):
         if not command.strip():
             return
+        
+        # NEW: Handle special UI commands (don't execute as regular commands)
+        if command == "whatsapp_dialog":
+            self._open_whatsapp_dialog()
+            return
 
         self._add_user_message(command)
         self._add_thinking()
@@ -543,6 +556,155 @@ class JeevesGUI:
                     text="✨ Ready — Type 'help' for commands"))
 
         threading.Thread(target=voice_thread, daemon=True).start()
+
+    # ========================================================
+    # WHATSAPP DIALOG (NEW UI FOR EASIER MESSAGING)
+    # ========================================================
+    def _open_whatsapp_dialog(self):
+        """Open WhatsApp message composer dialog."""
+        dialog = ctk.CTkToplevel(self.root)
+        dialog.title("💬 Send WhatsApp Message")
+        dialog.geometry("500x350")
+        dialog.configure(fg_color=COLORS["bg_dark"])
+        dialog.transient(self.root)
+        dialog.grab_set()
+
+        # Header
+        ctk.CTkLabel(dialog, text="💬 Send WhatsApp Message", font=FONTS["title"],
+                     text_color=COLORS["accent"]).pack(pady=(15, 10))
+
+        # Phone number field
+        phone_frame = ctk.CTkFrame(dialog, fg_color="transparent")
+        phone_frame.pack(fill="x", padx=15, pady=(0, 10))
+        ctk.CTkLabel(phone_frame, text="📞 Phone Number (with country code):",
+                     font=FONTS["body"], text_color=COLORS["text_secondary"]).pack(anchor="w", pady=(0, 5))
+        phone_entry = ctk.CTkEntry(
+            phone_frame, placeholder_text="E.g., 923001234567 or +1-202-555-1234",
+            font=FONTS["body"], fg_color=COLORS["bg_light"],
+            text_color=COLORS["text_primary"], border_width=1,
+            border_color=COLORS["border"], corner_radius=8, height=36
+        )
+        phone_entry.pack(fill="x")
+
+        # Message field
+        msg_frame = ctk.CTkFrame(dialog, fg_color="transparent")
+        msg_frame.pack(fill="both", expand=True, padx=15, pady=(0, 10))
+        ctk.CTkLabel(msg_frame, text="💬 Message:",
+                     font=FONTS["body"], text_color=COLORS["text_secondary"]).pack(anchor="w", pady=(0, 5))
+        msg_entry = ctk.CTkTextbox(
+            msg_frame, font=FONTS["body"], fg_color=COLORS["bg_light"],
+            text_color=COLORS["text_primary"], border_width=1,
+            border_color=COLORS["border"], corner_radius=8,
+            scrollbar_button_color=COLORS["accent"]
+        )
+        msg_entry.pack(fill="both", expand=True)
+
+        # Button frame
+        btn_frame = ctk.CTkFrame(dialog, fg_color="transparent")
+        btn_frame.pack(fill="x", padx=15, pady=(0, 15))
+
+        def send_wa():
+            phone = phone_entry.get().strip()
+            message = msg_entry.get("1.0", "end").strip()
+            
+            if not phone or not message:
+                self._add_system_message("❌ Please enter phone number and message")
+                return
+            
+            # Use the browser control module
+            from modules import browser_control
+            result = browser_control.send_whatsapp_message(phone, message, self.config)
+            self._add_bot_message(result)
+            dialog.destroy()
+
+        ctk.CTkButton(
+            btn_frame, text="📤 Send Message", font=FONTS["button"],
+            height=40, fg_color=COLORS["accent"], hover_color=COLORS["accent_hover"],
+            corner_radius=10, command=send_wa
+        ).pack(side="right", padx=(5, 0), fill="x", expand=True)
+
+        ctk.CTkButton(
+            btn_frame, text="Cancel", font=FONTS["button"],
+            height=40, fg_color=COLORS["bg_card"], hover_color=COLORS["border"],
+            text_color=COLORS["text_secondary"], corner_radius=10, command=dialog.destroy
+        ).pack(side="right", padx=(0, 5), fill="x", expand=True)
+
+        # Keyboard shortcut
+        dialog.bind('<Return>', lambda e: send_wa())
+        msg_entry.focus_set()
+
+    # ========================================================
+    # ALWAYS-LISTENING (NEW FEATURE)
+    # ========================================================
+    def _start_always_listening(self):
+        """Start background thread that listens for wake word."""
+        self.stop_listening = False
+        self.always_listening_thread = threading.Thread(target=self._always_listening_loop, daemon=True)
+        self.always_listening_thread.start()
+        self._add_system_message("🎤 Background voice listener started (Press Ctrl+L to toggle)")
+
+    def _always_listening_loop(self):
+        """
+        Background thread that continuously listens for wake words.
+        Default wake word: "hey jeeves" or just say something loudly.
+        """
+        wake_words = [
+            "hey jeeves",
+            "hey jeves",
+            "hey geeves",
+            "hey geeves",
+            "ok jeeves",
+            "ok jeves",
+        ]
+        
+        import time as time_module
+        
+        while not self.stop_listening:
+            try:
+                if self.always_listening and not self.is_listening and not self.is_speaking:
+                    # Listen with short timeout for wake word
+                    from core.voice_module import listen
+                    recognized = listen(timeout=2, phrase_time_limit=3)
+                    
+                    if not recognized.startswith("[Error]"):
+                        # Check if it contains wake word
+                        recognized_lower = recognized.lower()
+                        
+                        is_wake_word = any(word in recognized_lower for word in wake_words)
+                        
+                        if is_wake_word:
+                            # Wake word detected! Activate main listening
+                            self.root.after(0, lambda: self._on_mic_click())
+                        elif len(recognized) > 3:
+                            # User spoke something, treat as command
+                            self.root.after(0, lambda: self._execute_command(recognized))
+                else:
+                    # Not in always-listening mode, just sleep
+                    time_module.sleep(0.5)
+            except Exception as e:
+                # Silently continue on errors
+                time_module.sleep(1)
+
+    def _toggle_always_listening(self):
+        """Toggle always-listening mode with Ctrl+L."""
+        self.always_listening = not self.always_listening
+        
+        if self.always_listening:
+            self.mic_btn.configure(
+                text="🎤  Always Listening",
+                fg_color="#228B22",  # Green
+                border_color="#32CD32"
+            )
+            self._add_system_message("🎤 Always-listening mode ENABLED (Say 'Hey Jeeves' to activate)")
+            self.status_label.configure(text="🎤 Always-listening... (Say 'Hey Jeeves')", text_color=COLORS["listening"])
+        else:
+            self.mic_btn.configure(
+                text="🎤  Tap to Speak",
+                fg_color=COLORS["bg_card"],
+                border_color=COLORS["accent"]
+            )
+            self._add_system_message("🎤 Always-listening mode DISABLED")
+            self.status_label.configure(text="✨ Ready — Type 'help' for commands", text_color=COLORS["text_muted"])
 
     # ========================================================
     # SETTINGS
@@ -637,6 +799,8 @@ class JeevesGUI:
             self.ai_indicator.configure(text="🤖 AI: —", text_color=COLORS["text_muted"])
 
     def _on_close(self):
+        # NEW: Stop background listening thread
+        self.stop_listening = True
         try: self.visualizer.destroy_animation()
         except: pass
         try: self.core.cleanup()

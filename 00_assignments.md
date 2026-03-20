@@ -25,19 +25,20 @@
 ![VSCode](./screen_shots/commit_git.png)
 
 # 5. **Pandas, Numpy, Seaborn, Matplot & Plotly Practice with Custom Dataset**
-[Custom_Dataset]()  
-[Data_Visualization]()
+[Custom_Dataset](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/plot.csv)  
+[Data_Visualization](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/04_data_analysis_visualization_practice.ipynb)
 
 # 6. **EDA & Pandas-AI with API-keys with Custom Dataset**
-[Custom_Dataset]()  
-[Pandas_AI]()  
-[EDA_Pandas]()
+[Custom_Dataset](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/05_pandas_ai/extended_plot.csv)  
+[Pandas_AI](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/05_pandas_ai/pandas_ai.ipynb)  
+[EDA_Pandas](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/05_pandas_ai/pandas_practice.ipynb)
+[HTML_EDA](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/05_pandas_ai/pandas_profiling_report.html)
 
 # 7. **Project- Currency Rate Comparison (2000-2026)**
-[Currency_Rate_Comparison]()
+[Currency_Rate_Comparison](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/06_currency_comparison_project.ipynb)
 ## data sets:
-[Daily_Rate_Comparison]()  
-[Yearly_Rate_Comparison]()
+[Daily_Rate_Comparison](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/currency_comparison_data.csv)  
+[Yearly_Rate_Comparison](https://github.com/logicalzain/AI_ka_chilla_assignment/blob/main/currency_yearly_summary.csv)
 
 # 8. **Project- Streamlit Applications using AI**
 [API_application](https://logicalzain.streamlit.app/)  
@@ -46,6 +47,11 @@
 ![Ollama](./screen_shots/ollama.png)
 
 # 10. **Machine Learning practice**
-[Machine_Learning_Practice]()
+[Machine_Learning_Practice]().
 
+# 11. **AI Agent Project**
+[AI_Agent_Project]()
 
+# **Final Project Documentation & Presentation**
+- [Documentation]()
+- [Code]()
