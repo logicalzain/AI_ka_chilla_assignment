@@ -1,3 +1,11 @@
+
+# ***AI Ka Chilla - Assignment Summary***
+### This document provides a comprehensive overview of the assignments completed during the AI Ka Chilla course. Each section corresponds to a specific assignment, detailing the tasks accomplished, tools used, and outcomes achieved.
+
+## Submitted To : Dr, Muhammad Ammar Tufail  
+## Submitted By : Zain Ul Abideen Ahmed Khan 
+
+
 # 1. **Python and Other Software Integration**
 ## Python & GitBash:
 ![GitBash](./screen_shots/bash.png)

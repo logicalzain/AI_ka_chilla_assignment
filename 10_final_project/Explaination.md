@@ -1,12 +1,6 @@
 # 🤖 VOLTO - Desktop Voice Assistant
 ## Final Project Report
 
-**Student Name:** [Your Name]
-**Course:** [Course Name]
-**Date:** March 2026
-**Project Status:** ✅ Completed
-
----
 
 ## 📋 Project Overview
 
@@ -124,16 +118,16 @@ VOLTO is an intelligent assistant that listens to user commands and performs var
 
 ### Technology Stack
 
-| Component | Technology | Purpose |
-|-----------|-----------|---------|
-| **Language** | Python 3.11 | Core application |
-| **GUI** | CustomTkinter | Modern dark-themed interface |
-| **Voice Recognition** | Google Speech API | Convert voice to text |
-| **Text-to-Speech** | pyttsx3 | Convert text to voice |
-| **AI** | Google Gemini 2.0 | Intelligent responses |
-| **Hardware Control** | PySerial, Requests | Arduino & ESP32 communication |
-| **System Access** | psutil, pyautogui, winshell | PC automation |
-| **Web Control** | BeautifulSoup, requests | Browser automation |
+| Component             | Technology                  | Purpose                       |
+| --------------------- | --------------------------- | ----------------------------- |
+| **Language**          | Python 3.11                 | Core application              |
+| **GUI**               | CustomTkinter               | Modern dark-themed interface  |
+| **Voice Recognition** | Google Speech API           | Convert voice to text         |
+| **Text-to-Speech**    | pyttsx3                     | Convert text to voice         |
+| **AI**                | Google Gemini 2.0           | Intelligent responses         |
+| **Hardware Control**  | PySerial, Requests          | Arduino & ESP32 communication |
+| **System Access**     | psutil, pyautogui, winshell | PC automation                 |
+| **Web Control**       | BeautifulSoup, requests     | Browser automation            |
 
 ---
 
@@ -288,14 +282,14 @@ python main.py
 
 ## 📊 System Requirements
 
-| Requirement | Minimum | Recommended |
-|------------|---------|-------------|
-| Python | 3.9+ | 3.11+ |
-| RAM | 512 MB | 2 GB |
-| Disk Space | 500 MB | 1 GB |
-| OS | Windows 10 | Windows 10/11 |
-| Internet | For AI & voice | For AI & voice |
-| Microphone | Required | High quality |
+| Requirement | Minimum        | Recommended    |
+| ----------- | -------------- | -------------- |
+| Python      | 3.9+           | 3.11+          |
+| RAM         | 512 MB         | 2 GB           |
+| Disk Space  | 500 MB         | 1 GB           |
+| OS          | Windows 10     | Windows 10/11  |
+| Internet    | For AI & voice | For AI & voice |
+| Microphone  | Required       | High quality   |
 
 ---
 
@@ -427,16 +421,16 @@ python main.py
 ## 📈 Test Results & Performance
 
 ### Tested Features
-| Feature | Status | Notes |
-|---------|--------|-------|
+| Feature           | Status    | Notes                          |
+| ----------------- | --------- | ------------------------------ |
 | Voice recognition | ✅ Working | Accurate in quiet environments |
-| Text commands | ✅ Working | 98% keyword recognition |
-| System info | ✅ Working | Battery, time, system specs |
-| Web search | ✅ Working | Google and YouTube integration |
-| Games | ✅ Working | All 7 games functional |
-| AI responses | ✅ Working | Requires API key |
-| Hardware control | ✅ Working | Arduino/ESP32 communication |
-| GUI visualization | ✅ Working | Smooth animations |
+| Text commands     | ✅ Working | 98% keyword recognition        |
+| System info       | ✅ Working | Battery, time, system specs    |
+| Web search        | ✅ Working | Google and YouTube integration |
+| Games             | ✅ Working | All 7 games functional         |
+| AI responses      | ✅ Working | Requires API key               |
+| Hardware control  | ✅ Working | Arduino/ESP32 communication    |
+| GUI visualization | ✅ Working | Smooth animations              |
 
 ### Performance Metrics
 - **Startup time:** ~3 seconds
