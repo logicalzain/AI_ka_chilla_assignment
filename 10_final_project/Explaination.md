@@ -91,30 +91,6 @@ VOLTO is an intelligent assistant that listens to user commands and performs var
 
 ---
 
-## 📁 Project Architecture
-
-### Directory Structure
-```
-09_final_project/
-├── main.py                         # Application entry point
-├── config.json                     # Configuration settings
-├── requirements.txt                # Python dependencies
-│
-├── gui/                            # GUI Components
-│   ├── app_gui.py                 # Main window and layout
-│   └── voice_visualizer.py        # Animated visual feedback
-│
-├── core/                           # Core Processing
-│   ├── assistant_core.py          # Command router and processor
-│   └── voice_module.py            # Speech recognition and synthesis
-│
-└── modules/                        # Feature Modules
-    ├── system_control.py          # System and PC control
-    ├── browser_control.py         # Web browsing and searches
-    ├── arduino_control.py         # Hardware/IoT control
-    ├── ai_module.py               # Google Gemini AI integration
-    └── games.py                   # Games and entertainment
-```
 
 ### Technology Stack
 
@@ -204,25 +180,6 @@ VOLTO is an intelligent assistant that listens to user commands and performs var
 
 ---
 
-## 💾 How Data is Stored
-
-### **config.json** - Configuration File
-Stores all settings:
-```json
-{
-  "assistant_name": "volto",
-  "user_name": "Zain",
-  "voice_rate": 180,           // Words per minute (50-300)
-  "voice_volume": 1.0,         // 0.0 to 1.0
-  "voice_index": 0,            // 0=Male, 1=Female
-  "gemini_api_key": "",        // AI API key (optional)
-  "arduino_port": "COM3",      // Hardware port
-  "esp32_ip": "192.168.1.100"  // IoT device IP
-}
-```
-
----
-
 ## 🎯 How VOLTO Works - User Flow
 
 ```
@@ -250,36 +207,6 @@ Text-to-Speech + Display on GUI
 
 ---
 
-## 🚀 Installation & Setup
-
-### Requirements
-- Python 3.11+
-- Windows 10/11 OS
-- Internet connection (for voice recognition)
-- Microphone (for voice commands)
-
-### Installation Steps
-
-1. **Install Python dependencies:**
-```bash
-pip install -r requirements.txt
-```
-
-2. **Configure settings (optional):**
-   - Edit `config.json`
-   - Change assistant name, voice settings, etc.
-
-3. **Set up Google Gemini API (optional for AI):**
-   - Get API key from: https://aistudio.google.com/app/apikey
-   - Add to `config.json`: `"gemini_api_key": "your-key-here"`
-
-4. **Run the application:**
-```bash
-python main.py
-```
-
----
-
 ## 📊 System Requirements
 
 | Requirement | Minimum        | Recommended    |
@@ -294,7 +221,6 @@ python main.py
 ---
 
 ## 📸 Screenshots & Visuals
-*[Placeholders - Teacher will add actual screenshots]*
 
 ### Screenshot 1: Main Application Window
 ![VOLTO Main Window](images/volto_main.png)
@@ -341,27 +267,6 @@ python main.py
 │   - Displays in GUI                 │
 └─────────────────────────────────────┘
 ```
-
----
-
-## 🎓 Code Quality & Design Patterns
-
-### Design Principles Used
-✅ **Modular Architecture** - Each feature in separate module
-✅ **Separation of Concerns** - GUI, Logic, Hardware separated
-✅ **Configuration-Driven** - Settings in JSON file
-✅ **Error Handling** - Try-catch blocks and graceful failures
-✅ **Documentation** - Comments and docstrings
-✅ **Scalability** - Easy to add new commands/modules
-
-### Code Metrics
-- **Total Lines:** ~3,950 lines of Python code
-- **Number of Modules:** 10 Python files
-- **Number of Commands:** 50+
-- **Number of Games:** 7 games + utilities
-- **Dependencies:** 15 packages
-
----
 
 ## 🔮 Future Improvements & Enhancements
 
@@ -534,13 +439,3 @@ The project is extensible and ready for future enhancements. All code is documen
 
 ---
 
-## 📎 Project Submission
-
-**Submitted by:** [Student Name]
-**Date:** March 20, 2026
-**Version:** 1.0
-**Status:** ✅ Complete and Ready for Deployment
-
----
-
-**Thank you for reviewing VOLTO! 🚀**
